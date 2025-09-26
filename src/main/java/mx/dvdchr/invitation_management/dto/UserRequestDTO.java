@@ -22,14 +22,8 @@ public class UserRequestDTO {
     @NotBlank(message = "Role is required")
     private String roleId;
 
-    @NotBlank(message = "Create date is required", groups = UpdateUserValidationGroup.class)
-    private String createdAt;
-
-    @NotBlank(message = "Update date is required", groups = UpdateUserValidationGroup.class)
-    private String updatedAt;
-
-    @NotNull(message = "Status is required", groups = UpdateUserValidationGroup.class)
-    private boolean status;
+    @NotNull(message = "Active is required", groups = UpdateUserValidationGroup.class)
+    private Boolean isActive;
 
     public String getName() {
         return name;
@@ -63,28 +57,11 @@ public class UserRequestDTO {
         this.roleId = roleId;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public Boolean getIsActive() {
+        return isActive;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
 }

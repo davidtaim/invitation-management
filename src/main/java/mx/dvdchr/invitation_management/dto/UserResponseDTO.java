@@ -2,12 +2,21 @@ package mx.dvdchr.invitation_management.dto;
 
 public class UserResponseDTO {
 
+    private String id;
     private String name;
     private String email;
     private String role;
     private String createdAt;
     private String updatedAt;
-    private boolean status;
+    private Boolean isActive;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -49,12 +58,12 @@ public class UserResponseDTO {
         this.updatedAt = updatedAt;
     }
 
-    public boolean isStatus() {
-        return status;
+    public Boolean getIsActive() {
+        return isActive;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
 }

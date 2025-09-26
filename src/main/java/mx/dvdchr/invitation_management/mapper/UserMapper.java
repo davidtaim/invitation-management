@@ -10,10 +10,11 @@ public class UserMapper {
     public static UserResponseDTO toDto(User user) {
         var userResponseDTO = new UserResponseDTO();
 
+        userResponseDTO.setId(user.getId().toString());
         userResponseDTO.setName(user.getName());
         userResponseDTO.setEmail(user.getEmail());
         userResponseDTO.setRole(user.getRole().getName());
-        user.setStatus(user.isStatus());
+        userResponseDTO.setIsActive(user.getIsActive());
         userResponseDTO.setCreatedAt(user.getCreatedAt().toString());
         userResponseDTO.setUpdatedAt(user.getUpdatedAt().toString());
 

@@ -5,16 +5,10 @@ method = "POST"
 [body]
 type = "raw"
 format = "json"
-body = '''
+body = """
 {
     "name": "David Chavez Rodriguez",
     "email": "david@gmail.com",
     "password": "password",
-    "roleId": "51eefd57-27c4-498a-9f5b-8c5d4d8da9a3"
-}'''
-
-[headers]
-
-[variables]
-
-[inactive-params]
+    "roleId": "dd9be101-a621-4ad9-b5c8-d928cfebb031"
+}"""

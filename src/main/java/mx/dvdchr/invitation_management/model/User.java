@@ -13,8 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
-//TODO cambiar el status a isActive y checar los demas, si tienen mas de un estado usa
-//TODO isActive sino usa status
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -42,11 +41,12 @@ public class User {
     @Column(name = "created_at")
     private Instant createdAt = Instant.now();
 
+    @NotNull
     @Column(name = "updated_at")
-    private Instant updatedAt = null;
+    private Instant updatedAt = Instant.now();
 
     @NotNull
-    private boolean status = true;
+    private Boolean isActive = true;
 
     public UUID getId() {
         return id;
@@ -104,12 +104,12 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    public boolean isStatus() {
-        return status;
+    public Boolean getIsActive() {
+        return isActive;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
 }
