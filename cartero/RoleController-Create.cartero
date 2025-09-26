@@ -1,0 +1,17 @@
+version = 1
+url = "http://localhost:4000/api/role"
+method = "POST"
+
+[body]
+type = "raw"
+format = "json"
+body = '''
+{
+    "name": "GUEST"
+}'''
+
+[headers]
+
+[variables]
+
+[inactive-params]
