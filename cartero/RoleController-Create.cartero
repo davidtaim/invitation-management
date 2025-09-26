@@ -5,13 +5,7 @@ method = "POST"
 [body]
 type = "raw"
 format = "json"
-body = '''
+body = """
 {
-    "name": "GUEST"
-}'''
-
-[headers]
-
-[variables]
-
-[inactive-params]
+    "name": "ADMIN"
+}"""

@@ -20,6 +20,7 @@ public class Role {
     private UUID id;
 
     @NotNull
+    @Column(unique = true)
     private String name;
 
     @NotNull
@@ -32,7 +33,7 @@ public class Role {
 
     @NotNull
     @Column(name = "is_active")
-    private boolean isActive = true;
+    private Boolean isActive = true;
 
     public UUID getId() {
         return id;
@@ -66,11 +67,11 @@ public class Role {
         this.updatedAt = updatedAt;
     }
 
-    public boolean getIsActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(boolean isActive) {
+    public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }
 
