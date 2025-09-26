@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import mx.dvdchr.invitation_management.dto.RoleRequestDTO;
 import mx.dvdchr.invitation_management.dto.RoleResponseDTO;
+import mx.dvdchr.invitation_management.exception.RoleNameAlreadyExistsException;
 import mx.dvdchr.invitation_management.exception.RoleNotFoundException;
 import mx.dvdchr.invitation_management.mapper.RoleMapper;
 import mx.dvdchr.invitation_management.repository.RoleRepository;
@@ -22,6 +23,11 @@ public class RoleService {
     }
 
     public RoleResponseDTO create(RoleRequestDTO roleRequestDTO) {
+
+        if(this.roleRepository.existsByName(roleRequestDTO.getName())) {
+            throw new RoleNameAlreadyExistsException("Cant be a role with the same name");
+        }
+
         var role = RoleMapper.toEntity(roleRequestDTO);
 
         var newRole = this.roleRepository.save(role);

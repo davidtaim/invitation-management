@@ -1,5 +1,5 @@
 version = 1
-url = "http://localhost:4000/api/role"
+url = "http://localhost:4000/api/roles"
 method = "POST"
 
 [body]

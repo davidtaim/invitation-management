@@ -57,8 +57,20 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errors);
     }
 
+    @ExceptionHandler(RoleNameAlreadyExistsException.class)
+    public ResponseEntity<Map<String, String>> handleRoleNameAlreadyExistsException(RoleNameAlreadyExistsException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        log.warn(ex.getMessage());
+
+        errors.put("message", "Role with the same name already exists");
+
+        return ResponseEntity.badRequest().body(errors);
+    }
+
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public ResponseEntity<Map<String, String>> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
+    public ResponseEntity<Map<String, String>> handleMethodArgumentTypeMismatchException(
+            MethodArgumentTypeMismatchException ex) {
         Map<String, String> errors = new HashMap<>();
 
         errors.put(ex.getName(), ex.getMostSpecificCause().getMessage());
