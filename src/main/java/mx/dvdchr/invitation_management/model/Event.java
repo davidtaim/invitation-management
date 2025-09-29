@@ -50,8 +50,9 @@ public class Event {
     @Column(name = "created_at")
     private Instant createdAt = Instant.now();
 
+    @NotNull
     @Column(name = "updated_at")
-    private Instant updatedAt = null;
+    private Instant updatedAt = Instant.now();
 
     public UUID getId() {
         return id;
