@@ -38,11 +38,9 @@ public class User {
     private Role role;
 
     @NotNull
-    @Column(name = "created_at")
     private Instant createdAt = Instant.now();
 
     @NotNull
-    @Column(name = "updated_at")
     private Instant updatedAt = Instant.now();
 
     @NotNull

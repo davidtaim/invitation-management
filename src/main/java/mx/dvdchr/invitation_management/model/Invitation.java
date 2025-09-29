@@ -4,7 +4,6 @@ import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,24 +29,19 @@ public class Invitation {
     private Event event;
 
     @NotNull
-    @Column(name = "unique_code")
     private UUID uniqueCode;
 
     @NotNull
     private InvitationStatus status = InvitationStatus.PENDING;
 
-    @Column(name = "sent_at")
     private Instant sentAt = null;
 
-    @Column(name = "responded_at")
     private Instant respondedAt = null;
 
     @NotNull
-    @Column(name = "created_at")
     private Instant createdAt = Instant.now();
 
     @NotNull
-    @Column(name = "updated_at")
     private Instant updatedAt = Instant.now();
 
     @OneToMany(mappedBy = "invitation")

@@ -4,7 +4,6 @@ import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,15 +33,13 @@ public class Guest {
     private String company = "";
 
     @NotNull
-    @Column(name = "created_at")
     private Instant createdAt = Instant.now();
 
     @NotNull
-    @Column(name = "updated_at")
     private Instant updatedAt = Instant.now();
 
     @NotNull
-    private Boolean status = true;
+    private Boolean isActive = true;
 
     @OneToMany(mappedBy = "guest")
     private List<InvitationGuest> invitations;
@@ -103,12 +100,12 @@ public class Guest {
         this.updatedAt = updatedAt;
     }
 
-    public Boolean isStatus() {
-        return status;
+    public Boolean getIsActive() {
+        return isActive;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
 }

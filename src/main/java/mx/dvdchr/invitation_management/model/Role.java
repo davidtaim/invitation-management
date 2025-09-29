@@ -24,15 +24,12 @@ public class Role {
     private String name;
 
     @NotNull
-    @Column(name = "created_at")
     private Instant createdAt = Instant.now();
 
     @NotNull
-    @Column(name = "updated_at")
     private Instant updatedAt = Instant.now();
 
     @NotNull
-    @Column(name = "is_active")
     private Boolean isActive = true;
 
     public UUID getId() {

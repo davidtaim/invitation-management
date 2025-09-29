@@ -3,7 +3,6 @@ package mx.dvdchr.invitation_management.model;
 import java.time.Instant;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,11 +32,9 @@ public class Event {
     private String description;
 
     @NotNull
-    @Column(name = "start_datetime")
     private Instant startDatetime;
 
     @NotNull
-    @Column(name = "end_datetime")
     private Instant endDatetime;
 
     @NotNull
@@ -47,11 +44,9 @@ public class Event {
     private EventStatus status = EventStatus.DRAFT;
 
     @NotNull
-    @Column(name = "created_at")
     private Instant createdAt = Instant.now();
 
     @NotNull
-    @Column(name = "updated_at")
     private Instant updatedAt = Instant.now();
 
     public UUID getId() {

@@ -3,7 +3,6 @@ package mx.dvdchr.invitation_management.model;
 import java.time.Instant;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,22 +26,18 @@ public class Attendance {
     private EventSeat seat;
 
     @NotNull
-    @Column(name = "checkin_time")
     private Instant checkinTime;
 
     @NotNull
-    @Column(name = "checkout_time")
     private Instant checkoutTime;
 
     @NotNull
     private AttendanceStatus status = AttendanceStatus.NOT_CHECKED_IN;
 
     @NotNull
-    @Column(name = "created_at")
     private Instant createdAt = Instant.now();
 
     @NotNull
-    @Column(name = "updated_at")
     private Instant updatedAt = Instant.now();
 
     public UUID getId() {
