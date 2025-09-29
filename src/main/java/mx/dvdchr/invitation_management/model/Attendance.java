@@ -35,8 +35,7 @@ public class Attendance {
     private Instant checkoutTime;
 
     @NotNull
-    @Column(name = "attendance_status")
-    private AttendanceStatus attendanceStatus = AttendanceStatus.NOT_CHECKED_IN;
+    private AttendanceStatus status = AttendanceStatus.NOT_CHECKED_IN;
 
     @NotNull
     @Column(name = "created_at")
@@ -77,12 +76,12 @@ public class Attendance {
         this.checkoutTime = checkoutTime;
     }
 
-    public AttendanceStatus getAttendanceStatus() {
-        return attendanceStatus;
+    public AttendanceStatus getStatus() {
+        return status;
     }
 
-    public void setAttendanceStatus(AttendanceStatus attendanceStatus) {
-        this.attendanceStatus = attendanceStatus;
+    public void setStatus(AttendanceStatus status) {
+        this.status = status;
     }
 
     public Instant getCreatedAt() {

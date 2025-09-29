@@ -41,7 +41,7 @@ public class Guest {
     private Instant updatedAt = null;
 
     @NotNull
-    private boolean status = true;
+    private Boolean status = true;
 
     @OneToMany(mappedBy = "guest")
     private List<InvitationGuest> invitations;
@@ -102,11 +102,11 @@ public class Guest {
         this.updatedAt = updatedAt;
     }
 
-    public boolean isStatus() {
+    public Boolean isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

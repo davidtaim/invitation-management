@@ -44,7 +44,7 @@ public class Event {
     private String location;
 
     @NotNull
-    private EventStatus status;
+    private EventStatus status = EventStatus.DRAFT;
 
     @NotNull
     @Column(name = "created_at")

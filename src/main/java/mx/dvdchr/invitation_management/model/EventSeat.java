@@ -40,7 +40,7 @@ public class EventSeat {
 
     @NotNull
     @Column(name = "is_available")
-    private boolean isAvailable = true;
+    private Boolean isAvailable = true;
 
     @NotNull
     @Column(name = "created_at")
@@ -89,11 +89,11 @@ public class EventSeat {
         this.seatCategory = seatCategory;
     }
 
-    public boolean isAvailable() {
+    public Boolean isAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(boolean isAvailable) {
+    public void setAvailable(Boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
 
