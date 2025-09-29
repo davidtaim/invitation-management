@@ -8,7 +8,7 @@ format = "json"
 body = """
 {
     "name": "David Chavez Rodriguez",
-    "email": "david@gmail.com",
+    "email": "david2@gmail.com",
     "password": "password",
-    "roleId": "dd9be101-a621-4ad9-b5c8-d928cfebb031"
+    "roleId": "51eefd57-27c4-498a-9f5b-8c5d4d8da9a3"
 }"""
