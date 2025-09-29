@@ -28,8 +28,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errors);
     }
 
-    @ExceptionHandler(UUIDInvalidException.class)
-    public ResponseEntity<Map<String, String>> handleUUIDInvalidException(UUIDInvalidException ex) {
+    @ExceptionHandler(UuidInvalidException.class)
+    public ResponseEntity<Map<String, String>> handleUUIDInvalidException(UuidInvalidException ex) {
         Map<String, String> errors = new HashMap<>();
 
         errors.put("message", ex.getMessage());
