@@ -1,0 +1,14 @@
+version = 1
+url = "http://localhost:4000/api/guests"
+method = "POST"
+
+[body]
+type = "raw"
+format = "json"
+body = """
+{
+    "name": "david chavez",
+    "email": "david1@gmail.com",
+    "phone": "",
+    "company": ""
+}"""

@@ -1,0 +1,3 @@
+version = 1
+url = "http://localhost:4000/api/guests/284894a4-1e98-423d-a26d-5f39553967ed"
+method = "DELETE"

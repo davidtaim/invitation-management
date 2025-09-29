@@ -1,0 +1,15 @@
+version = 1
+url = "http://localhost:4000/api/guests/72b5db46-b802-4db6-b610-1dd80a88bc72"
+method = "PUT"
+
+[body]
+type = "raw"
+format = "json"
+body = """
+{
+    "name": "david chavez rodriguez",
+    "email": "david1@gmail.com",
+    "phone": "",
+    "company": "",
+    "isActive": true
+}"""
