@@ -55,6 +55,24 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleUserNotFoundException(UserNotFoundException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        errors.put("message", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
+    }
+
+    @ExceptionHandler(EventNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleEventNotFoundException(EventNotFoundException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        errors.put("message", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
+    }
+
     @ExceptionHandler(EmailAlreadyExistsException.class)
     public ResponseEntity<Map<String, String>> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
         Map<String, String> errors = new HashMap<>();
@@ -83,6 +101,15 @@ public class GlobalExceptionHandler {
         Map<String, String> errors = new HashMap<>();
 
         errors.put(ex.getName(), ex.getMostSpecificCause().getMessage());
+
+        return ResponseEntity.badRequest().body(errors);
+    }
+
+    @ExceptionHandler(NotValidEnumStringException.class)
+    public ResponseEntity<Map<String, String>> handleNotValidEnumStringException(NotValidEnumStringException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        errors.put("message", ex.getMessage());
 
         return ResponseEntity.badRequest().body(errors);
     }

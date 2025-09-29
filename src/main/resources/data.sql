@@ -48,3 +48,33 @@ values (
     '2025-09-29T03:37:27.820325314Z',
     true
 );
+
+insert into events (id, organizer_id, title, description, start_datetime, end_datetime, location, 
+                    status, created_at, updated_at)
+values (
+    '5f549545-ab73-47b4-9a30-cb9d796bfc39',
+    'fd3d5d38-a559-44b8-b412-95851f610450',
+    'Boda de 1',
+    'Descripcion de boda 1',
+    '2025-09-29T03:37:27.820325Z',
+    '2025-09-29T03:37:27.820325Z',
+    'Salon de fiestas 1',
+    0,
+    '2025-09-29T03:37:27.820325Z',
+    '2025-09-29T03:37:27.820325Z'
+);
+
+insert into events (id, organizer_id, title, description, start_datetime, end_datetime, location, 
+                    status, created_at, updated_at)
+values (
+    '302958e0-d1c1-4df6-afc9-0f63503e407f',
+    'fd3d5d38-a559-44b8-b412-95851f610450',
+    'Boda de 2',
+    'Descripcion de boda 2',
+    '2025-09-29T03:37:27.820325Z',
+    '2025-09-29T03:37:27.820325Z',
+    'Salon de fiestas 2',
+    0,
+    '2025-09-29T03:37:27.820325Z',
+    '2025-09-29T03:37:27.820325Z'
+);

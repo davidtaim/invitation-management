@@ -1,0 +1,17 @@
+version = 1
+url = "http://localhost:4000/api/events/5f549545-ab73-47b4-9a30-cb9d796bfc39"
+method = "PUT"
+
+[body]
+type = "raw"
+format = "json"
+body = """
+{
+    "organizerId": "fd3d5d38-a559-44b8-b412-95851f610450",
+    "title": "Boda de",
+    "description": "Descripcion de la boda de",
+    "location": "Salon tal",
+    "startDatetime": "2025-09-29T03:37:27.820324852Z",
+    "endDatetime": "2025-09-29T03:37:27.820324852Z",
+    "status": "PUBLISHED"
+}"""
