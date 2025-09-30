@@ -24,7 +24,7 @@ public class RoleService {
 
     public RoleResponseDTO create(RoleRequestDTO roleRequestDTO) {
 
-        if(this.roleRepository.existsByName(roleRequestDTO.getName())) {
+        if (this.roleRepository.existsByName(roleRequestDTO.getName())) {
             throw new RoleNameAlreadyExistsException("Cant be a role with the same name");
         }
 
@@ -48,7 +48,7 @@ public class RoleService {
 
     public RoleResponseDTO update(UUID id, RoleRequestDTO roleRequestDTO) {
         var role = this.roleRepository.findById(id).orElseThrow(() -> new RoleNotFoundException("Role not found"));
-        
+
         role.setName(roleRequestDTO.getName());
         role.setIsActive(roleRequestDTO.getIsActive());
         role.setUpdatedAt(Instant.now());

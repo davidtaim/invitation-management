@@ -1,7 +1,6 @@
 package mx.dvdchr.invitation_management.service;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -121,9 +120,8 @@ public class InvitationService {
         var invitation = this.invitationRepository.findById(id)
                 .orElseThrow(() -> new InvitationNotFoundException("Invitation not found"));
 
-        var invitationGuests = this.invitationGuestRepository.findByInvitation(invitation);
-
-        var guests = invitationGuests
+        var guests = invitation
+                .getGuests()
                 .stream()
                 .map(ig -> this.guestRepository
                         .findById(ig.getGuest().getId())
