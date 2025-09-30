@@ -27,17 +27,24 @@ import mx.dvdchr.invitation_management.repository.InvitationRepository;
 @Service
 public class InvitationService {
 
-    @Autowired
-    private InvitationRepository invitationRepository;
+    private final InvitationRepository invitationRepository;
 
-    @Autowired
-    private EventRepository eventRepository;
+    private final EventRepository eventRepository;
 
-    @Autowired
-    private GuestRepository guestRepository;
+    private final GuestRepository guestRepository;
 
-    @Autowired
-    private InvitationGuestRepository invitationGuestRepository;
+    private final InvitationGuestRepository invitationGuestRepository;
+
+    public InvitationService(
+            InvitationRepository invitationRepository,
+            EventRepository eventRepository,
+            GuestRepository guestRepository,
+            InvitationGuestRepository invitationGuestRepository) {
+        this.invitationRepository = invitationRepository;
+        this.eventRepository = eventRepository;
+        this.guestRepository = guestRepository;
+        this.invitationGuestRepository = invitationGuestRepository;
+    }
 
     public InvitationResponseDTO create(UUID eventId, InvitationRequestDTO invitationRequestDTO) {
         var event = this.eventRepository.findById(eventId)
