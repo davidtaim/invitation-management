@@ -3,10 +3,14 @@ package mx.dvdchr.invitation_management.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import mx.dvdchr.invitation_management.dto.validator.AddGuestInvitiationValidationGroup;
 import mx.dvdchr.invitation_management.dto.validator.UpdateGuestValidationGroup;
 
 public class GuestRequestDTO {
-    
+
+    @NotBlank(message = "Guest is required", groups = AddGuestInvitiationValidationGroup.class)
+    private String id;
+
     @NotBlank(message = "Name is required")
     private String name;
 
@@ -22,6 +26,14 @@ public class GuestRequestDTO {
 
     @NotNull(message = "Active must be not null", groups = UpdateGuestValidationGroup.class)
     private Boolean isActive;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

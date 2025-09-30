@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.groups.Default;
 import mx.dvdchr.invitation_management.dto.EventRequestDTO;
 import mx.dvdchr.invitation_management.dto.EventResponseDTO;
+import mx.dvdchr.invitation_management.dto.InvitationRequestDTO;
+import mx.dvdchr.invitation_management.dto.InvitationResponseDTO;
 import mx.dvdchr.invitation_management.dto.validator.UpdateEventValidationGroup;
 import mx.dvdchr.invitation_management.service.EventService;
+import mx.dvdchr.invitation_management.service.InvitationService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,9 +30,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class EventController {
 
     private final EventService eventService;
+    private final InvitationService invitationService;
 
-    public EventController(EventService eventService) {
+    public EventController(EventService eventService, InvitationService invitationService) {
         this.eventService = eventService;
+        this.invitationService = invitationService;
     }
 
     @PostMapping
@@ -66,13 +71,18 @@ public class EventController {
     }
 
     @PostMapping(path = "{id}/invitations")
-    public ResponseEntity<Void> createInvitation() {
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<InvitationResponseDTO> createInvitation(
+            @PathVariable UUID id,
+            @Validated({ Default.class }) @RequestBody InvitationRequestDTO invitationRequestDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(this.invitationService.create(id, invitationRequestDTO));
     }
 
     @GetMapping(path = "{id}/invitations")
-    public ResponseEntity<String> getInvitations() {
-        return ResponseEntity.ok().body("list of invitations for this event");
+    public ResponseEntity<List<InvitationResponseDTO>> getInvitations(
+            @PathVariable UUID id) {
+        return ResponseEntity.ok()
+                .body(this.invitationService.findAllByEventId(id));
     }
 
     @PostMapping(path = "{id}/seats")

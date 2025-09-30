@@ -1,0 +1,14 @@
+version = 1
+url = "http://localhost:4000/api/invitations/c12c69d4-1fbc-4d67-8878-2ada8a89748f"
+method = "PUT"
+
+[body]
+type = "raw"
+format = "json"
+body = """
+{
+    "eventId": "5f549545-ab73-47b4-9a30-cb9d796bfc39",
+    "status": "PENDING",
+    "sentAt": "",
+    "respondedAt": ""
+}"""

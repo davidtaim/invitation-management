@@ -61,6 +61,7 @@ public class EventService {
 
         EventStatus validStatus = null;
 
+        //TODO find a better way to do this
         try {
             validStatus = EventStatus.valueOf(eventRequestDTO.getStatus());
         } catch (IllegalArgumentException ex) {

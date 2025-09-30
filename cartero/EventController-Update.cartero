@@ -13,5 +13,5 @@ body = """
     "location": "Salon tal",
     "startDatetime": "2025-09-29T03:37:27.820324852Z",
     "endDatetime": "2025-09-29T03:37:27.820324852Z",
-    "status": "PUBLISHED"
+    "status": "PUBLISHEDD"
 }"""

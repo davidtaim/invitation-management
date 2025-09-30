@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,14 +30,15 @@ public class Invitation {
     private Event event;
 
     @NotNull
-    private UUID uniqueCode;
+    @Column(unique = true)
+    private UUID uniqueCode = UUID.randomUUID();
 
     @NotNull
     private InvitationStatus status = InvitationStatus.PENDING;
 
-    private Instant sentAt = null;
+    private Instant sentAt;
 
-    private Instant respondedAt = null;
+    private Instant respondedAt;
 
     @NotNull
     private Instant createdAt = Instant.now();
@@ -46,5 +48,77 @@ public class Invitation {
 
     @OneToMany(mappedBy = "invitation")
     private List<InvitationGuest> guests;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public UUID getUniqueCode() {
+        return uniqueCode;
+    }
+
+    public void setUniqueCode(UUID uniqueCode) {
+        this.uniqueCode = uniqueCode;
+    }
+
+    public InvitationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(InvitationStatus status) {
+        this.status = status;
+    }
+
+    public Instant getSentAt() {
+        return sentAt;
+    }
+
+    public void setSentAt(Instant sentAt) {
+        this.sentAt = sentAt;
+    }
+
+    public Instant getRespondedAt() {
+        return respondedAt;
+    }
+
+    public void setRespondedAt(Instant respondedAt) {
+        this.respondedAt = respondedAt;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public List<InvitationGuest> getGuests() {
+        return guests;
+    }
+
+    public void setGuests(List<InvitationGuest> guests) {
+        this.guests = guests;
+    }
 
 }

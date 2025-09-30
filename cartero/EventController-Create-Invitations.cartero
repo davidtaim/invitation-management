@@ -1,0 +1,11 @@
+version = 1
+url = "http://localhost:4000/api/events/5f549545-ab73-47b4-9a30-cb9d796bfc39/invitations"
+method = "POST"
+
+[body]
+type = "raw"
+format = "json"
+body = """
+{
+    
+}"""

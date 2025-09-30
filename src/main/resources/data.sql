@@ -78,3 +78,52 @@ values (
     '2025-09-29T03:37:27.820325Z',
     '2025-09-29T03:37:27.820325Z'
 );
+
+insert into invitations (id, event_id, unique_code, status, sent_at, responded_at, created_at, updated_at)
+values (
+    'c12c69d4-1fbc-4d67-8878-2ada8a89748f',
+    '5f549545-ab73-47b4-9a30-cb9d796bfc39',
+    'e0900ea6-0bac-41fe-86a2-12a80948c678',
+    0,
+    null,
+    null,
+    '2025-09-29T20:12:46.742065Z',
+    '2025-09-29T20:12:46.742065Z'
+);
+
+insert into invitations (id, event_id, unique_code, status, sent_at, responded_at, created_at, updated_at)
+values (
+    '2c545e3d-fca8-48f1-aff2-13518911fb70',
+    '5f549545-ab73-47b4-9a30-cb9d796bfc39',
+    '221c3a47-b43c-4e61-81e7-75c26995a79e',
+    0,
+    null,
+    null,
+    '2025-09-29T20:12:46.742065Z',
+    '2025-09-29T20:12:46.742065Z'
+);
+
+insert into guests (id, name, email, phone, company, created_at, updated_at, is_active)
+values(
+    'd6a53885-d780-4e92-b304-ba8db6a77cb0',
+    'Guest 1',
+    'guest1@gmail.com',
+    '',
+    '',
+    '2025-09-30T01:42:53.322634297Z',
+    '2025-09-30T01:42:53.322634297Z',
+    true
+);
+
+insert into guests (id, name, email, phone, company, created_at, updated_at, is_active)
+values(
+    '422221dd-1bde-4480-97f9-5e4554da1993',
+    'Guest 2',
+    'guest2@gmail.com',
+    '',
+    '',
+    '2025-09-30T01:42:53.322634297Z',
+    '2025-09-30T01:42:53.322634297Z',
+    true
+);
+

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
@@ -24,6 +25,16 @@ public class GlobalExceptionHandler {
 
         ex.getBindingResult().getFieldErrors()
                 .forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
+
+        return ResponseEntity.badRequest().body(errors);
+    }
+
+    @ExceptionHandler(HandlerMethodValidationException.class)
+    public ResponseEntity<Map<String, String>> handleHandlerMethodValidationException(
+            HandlerMethodValidationException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        ex.getAllErrors().forEach(error -> errors.put("message", error.getDefaultMessage()));
 
         return ResponseEntity.badRequest().body(errors);
     }
@@ -66,6 +77,15 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(EventNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleEventNotFoundException(EventNotFoundException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        errors.put("message", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
+    }
+
+    @ExceptionHandler(InvitationNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleInvitationNotFoundException(InvitationNotFoundException ex) {
         Map<String, String> errors = new HashMap<>();
 
         errors.put("message", ex.getMessage());

@@ -1,0 +1,3 @@
+version = 1
+url = "http://localhost:4000/api/invitations/c12c69d4-1fbc-4d67-8878-2ada8a89748f/guests/d6a53885-d780-4e92-b304-ba8db6a77cb0/ACCEPTED"
+method = "PUT"

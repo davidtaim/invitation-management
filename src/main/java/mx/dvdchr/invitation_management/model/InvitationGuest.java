@@ -33,4 +33,44 @@ public class InvitationGuest {
 
     @NotNull
     private InvitationGuestStatus status = InvitationGuestStatus.PENDING;
+
+    public InvitationGuestId getId() {
+        return id;
+    }
+
+    public void setId(InvitationGuestId id) {
+        this.id = id;
+    }
+
+    public Invitation getInvitation() {
+        return invitation;
+    }
+
+    public void setInvitation(Invitation invitation) {
+        this.invitation = invitation;
+    }
+
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+
+    public EventSeat getSeat() {
+        return seat;
+    }
+
+    public void setSeat(EventSeat seat) {
+        this.seat = seat;
+    }
+
+    public InvitationGuestStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(InvitationGuestStatus status) {
+        this.status = status;
+    }
 }
