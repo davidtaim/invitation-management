@@ -21,7 +21,7 @@ public class Role {
 
     @NotNull
     @Column(unique = true)
-    private String name;
+    private String name = "GUEST";
 
     @NotNull
     private Instant createdAt = Instant.now();

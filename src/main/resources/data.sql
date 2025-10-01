@@ -25,10 +25,12 @@ values (
     '2025-09-29T03:49:12.410040943Z'
 );
 
-insert into users (id, name, email, password, role_id, created_at, updated_at, is_active)
+insert into users (id, name, middle_name, last_name, email, password, role_id, created_at, updated_at, is_active)
 values (
     '888fa8e9-a498-4cac-bfa7-b734d33ea9b3',
     'ADMIN David',
+    'Chavez',
+    'Rodriguez',
     'admin@gmail.com',
     '$2a$10$wMlJFcLeY1Ng0UVWECa4beACZJFXxS3IWjXY6NSQFf0fzgryHXVCu',
     '51eefd57-27c4-498a-9f5b-8c5d4d8da9a3',
@@ -37,11 +39,27 @@ values (
     true
 );
 
-insert into users (id, name, email, password, role_id, created_at, updated_at, is_active)
+insert into users (id, name, middle_name, last_name, email, password, role_id, created_at, updated_at, is_active)
 values (
     'fd3d5d38-a559-44b8-b412-95851f610450',
     'ORGANIZER David',
+    'Chavez',
+    'Rodriguez',
     'organizer@gmail.com',
+    '$2a$10$wMlJFcLeY1Ng0UVWECa4beACZJFXxS3IWjXY6NSQFf0fzgryHXVCu',
+    '2b0306c1-9a27-4385-94b1-d00a00c91bda',
+    '2025-09-29T03:37:27.820324852Z',
+    '2025-09-29T03:37:27.820325314Z',
+    true
+);
+
+insert into users (id, name, middle_name, last_name, email, password, role_id, created_at, updated_at, is_active)
+values (
+    'e536ef97-c4b9-4d21-ac60-2643bd9b45c2',
+    'WEDDING Planer is a guest David',
+    'Chavez',
+    'Rodriguez',
+    'wedding-planer@gmail.com',
     '$2a$10$wMlJFcLeY1Ng0UVWECa4beACZJFXxS3IWjXY6NSQFf0fzgryHXVCu',
     '67c5fb73-7580-4e04-b8e8-ebd2ab97e692',
     '2025-09-29T03:37:27.820324852Z',

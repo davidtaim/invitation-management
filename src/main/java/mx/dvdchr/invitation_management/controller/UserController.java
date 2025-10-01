@@ -4,14 +4,18 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import mx.dvdchr.invitation_management.dto.UserRequestDTO;
 import mx.dvdchr.invitation_management.dto.UserResponseDTO;
+import mx.dvdchr.invitation_management.dto.validator.UpdateUserValidationGroup;
 import mx.dvdchr.invitation_management.service.UserService;
 
 @RestController
@@ -31,17 +35,21 @@ public class UserController {
     }
 
     @GetMapping(path = "{id}")
-    public ResponseEntity<String> get(@PathVariable UUID id) {
-        return ResponseEntity.ok().body("ID: " + id.toString());
+    public ResponseEntity<UserResponseDTO> get(@PathVariable UUID id) {
+        return ResponseEntity.ok()
+                .body(this.userService.get(id));
     }
 
     @PutMapping(path = "{id}")
-    public ResponseEntity<String> update(@PathVariable UUID id) {
-        return ResponseEntity.ok().body("Updated");
+    public ResponseEntity<UserResponseDTO> update(@PathVariable UUID id,
+            @Validated({ UpdateUserValidationGroup.class }) @RequestBody UserRequestDTO userRequestDTO) {
+        return ResponseEntity.ok()
+                .body(this.userService.update(id, userRequestDTO));
     }
 
     @DeleteMapping(path = "{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
+        this.userService.delete(id);
         return ResponseEntity.noContent().build();
     }
 

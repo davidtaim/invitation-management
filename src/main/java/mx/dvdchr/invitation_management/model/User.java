@@ -26,6 +26,12 @@ public class User {
     private String name;
 
     @NotNull
+    private String middleName;
+
+    @NotNull
+    private String lastName;
+
+    @NotNull
     @Column(unique = true)
     private String email;
 
@@ -60,6 +66,22 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {

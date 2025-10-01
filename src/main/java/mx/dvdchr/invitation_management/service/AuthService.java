@@ -9,7 +9,6 @@ import mx.dvdchr.invitation_management.dto.UserRequestDTO;
 import mx.dvdchr.invitation_management.dto.UserResponseDTO;
 import mx.dvdchr.invitation_management.exception.EmailAlreadyExistsException;
 import mx.dvdchr.invitation_management.exception.RoleNotFoundException;
-import mx.dvdchr.invitation_management.exception.UuidInvalidException;
 import mx.dvdchr.invitation_management.mapper.UserMapper;
 import mx.dvdchr.invitation_management.repository.RoleRepository;
 import mx.dvdchr.invitation_management.repository.UserRepository;
@@ -34,13 +33,7 @@ public class AuthService {
                     + userRequestDTO.getEmail());
         }
 
-        UUID validUuid;
-        try {
-            validUuid = UUID.fromString(userRequestDTO.getRoleId());
-        } catch (IllegalArgumentException ex) {
-            throw new UuidInvalidException("UUID invalid");
-        }
-        var role = this.roleRepository.findById(validUuid)
+        var role = this.roleRepository.findById(UUID.fromString(userRequestDTO.getRoleId()))
                 .orElseThrow(() -> new RoleNotFoundException("Role not found"));
 
         var newPass = this.passwordEncoder.encode(userRequestDTO.getPassword());

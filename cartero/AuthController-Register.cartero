@@ -7,8 +7,10 @@ type = "raw"
 format = "json"
 body = """
 {
-    "name": "David Chavez Rodriguez",
-    "email": "david2@gmail.com",
+    "name": "David",
+    "middleName": "Chavez",
+    "lastName": "Rodriguez",
+    "email": "david@gmail.com",
     "password": "password",
-    "roleId": "51eefd57-27c4-498a-9f5b-8c5d4d8da9a3"
+    "roleId": "2b0306c1-9a27-4385-94b1-d00a00c91bda"
 }"""

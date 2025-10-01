@@ -1,0 +1,3 @@
+version = 1
+url = "http://localhost:4000/api/users/888fa8e9-a498-4cac-bfa7-b734d33ea9b3"
+method = "GET"

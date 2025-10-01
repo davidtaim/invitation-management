@@ -2,6 +2,7 @@ package mx.dvdchr.invitation_management.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.groups.Default;
 import mx.dvdchr.invitation_management.dto.UserRequestDTO;
 import mx.dvdchr.invitation_management.dto.UserResponseDTO;
 import mx.dvdchr.invitation_management.service.AuthService;
@@ -24,7 +25,8 @@ public class AuthController {
     }
 
     @PostMapping(path = "register")
-    public ResponseEntity<UserResponseDTO> register(@Validated @RequestBody UserRequestDTO userRequestDTO) {
+    public ResponseEntity<UserResponseDTO> register(
+            @Validated({ Default.class }) @RequestBody UserRequestDTO userRequestDTO) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(this.authService.register(userRequestDTO));

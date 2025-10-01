@@ -7,6 +7,8 @@
 - [ ] `POST /api/auth/login`
 - [ ] `POST /api/auth/logout`
 - [x] `POST /api/auth/register`
+- [ ] `PUT /api/auth/change/password`
+- [ ] `PUT /api/auth/change/email`
 
 #### Events
 - [x] `GET - /api/events`
@@ -49,8 +51,15 @@
 - [x] `GET /api/seats/{id}`
 - [x] `PUT /api/seats/{id}`
 
+#### Seats Category
+- [ ] `GET /api/seats/category`
+- [ ] `POST /api/seats/category`
+- [ ] `DELETE /api/seats/category/{id}`
+- [ ] `GET /api/seats/category/{id}`
+- [ ] `PUT /api/seats/category/{id}`
+
 #### Users
 - [x] `GET /api/users`
-- [ ] `DELETE /api/users/{id}`
-- [ ] `GET /api/users/{id}`
-- [ ] `PUT /api/users/{id}`
+- [x] `DELETE /api/users/{id}`
+- [x] `GET /api/users/{id}`
+- [x] `PUT /api/users/{id}`

@@ -2,14 +2,21 @@ package mx.dvdchr.invitation_management.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.groups.Default;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import mx.dvdchr.invitation_management.dto.validator.UpdateUserValidationGroup;
 
 public class UserRequestDTO {
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Name is required", groups = {Default.class,  UpdateUserValidationGroup.class})
     private String name;
+    
+    @NotBlank(message = "Middle name is required", groups = {Default.class,  UpdateUserValidationGroup.class})
+    private String middleName;
+
+    @NotBlank(message = "Last name is required", groups = {Default.class,  UpdateUserValidationGroup.class})
+    private String lastName;
 
     @NotBlank(message = "Email is required")
     @Email(message = "Enter a string with a valid email format")
@@ -19,7 +26,7 @@ public class UserRequestDTO {
     @Size(min = 8, message = "Password must have at least 8 characteres")
     private String password;
 
-    @NotBlank(message = "Role is required")
+    @NotBlank(message = "Role is required", groups = {UpdateUserValidationGroup.class})
     private String roleId;
 
     @NotNull(message = "Active is required", groups = UpdateUserValidationGroup.class)
@@ -31,6 +38,22 @@ public class UserRequestDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
