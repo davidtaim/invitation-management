@@ -1,0 +1,14 @@
+version = 1
+url = "http://localhost:4000/api/seats/e536ef97-c4b9-4d21-ac60-2643bd9b45c2"
+method = "PUT"
+
+[body]
+type = "raw"
+format = "json"
+body = """
+{
+    "tableNumber": "",
+    "seatNumber": "",
+    "seatCategoryId": "",
+    "isAvailable": false
+}"""

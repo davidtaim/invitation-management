@@ -1,0 +1,3 @@
+version = 1
+url = "http://localhost:4000/api/events/5f549545-ab73-47b4-9a30-cb9d796bfc39/seats/5"
+method = "POST"
