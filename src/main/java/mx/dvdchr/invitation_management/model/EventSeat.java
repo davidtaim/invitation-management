@@ -24,13 +24,10 @@ public class EventSeat {
     @JoinColumn(name = "event_id")
     private Event event;
 
-    @NotNull
-    private String seatNumber;
+    private String seatNumber = "";
 
-    @NotNull
-    private String tableNumber;
+    private String tableNumber = "";
     
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "seat_category_id")
     private SeatCategory seatCategory;
@@ -84,11 +81,11 @@ public class EventSeat {
         this.seatCategory = seatCategory;
     }
 
-    public Boolean isAvailable() {
+    public Boolean getIsAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(Boolean isAvailable) {
+    public void setIsAvailable(Boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
 

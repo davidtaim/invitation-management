@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.groups.Default;
 import mx.dvdchr.invitation_management.dto.EventRequestDTO;
 import mx.dvdchr.invitation_management.dto.EventResponseDTO;
+import mx.dvdchr.invitation_management.dto.EventSeatRequestDTO;
+import mx.dvdchr.invitation_management.dto.EventSeatResponseDTO;
 import mx.dvdchr.invitation_management.dto.InvitationRequestDTO;
 import mx.dvdchr.invitation_management.dto.InvitationResponseDTO;
 import mx.dvdchr.invitation_management.dto.validator.UpdateEventValidationGroup;
@@ -85,23 +87,34 @@ public class EventController {
                 .body(this.invitationService.findAllByEventId(id));
     }
 
-    @PostMapping(path = "{id}/seats")
-    public ResponseEntity<String> createSeats() {
-        return ResponseEntity.status(HttpStatus.CREATED).body("seats created");
+    @PostMapping(path = "{eventId}/seats")
+    public ResponseEntity<EventSeatResponseDTO> createSeat(@PathVariable UUID eventId,
+            @Validated() @RequestBody EventSeatRequestDTO eventSeatRequestDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(this.eventService.addSeat(eventId, eventSeatRequestDTO));
     }
 
-    @GetMapping(path = "{id}/seats")
-    public ResponseEntity<String> getSeats() {
-        return ResponseEntity.ok().body("list of seats");
+    @PostMapping(path = "{eventId}/seats/{amount}")
+    public ResponseEntity<List<EventSeatResponseDTO>> createSeats(@PathVariable UUID eventId, @PathVariable int amount) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(this.eventService.addSeats(eventId, amount));
     }
 
-    @GetMapping(path = "{id}/seats/available")
-    public ResponseEntity<String> getAvailableSeats() {
-        return ResponseEntity.ok().body("list of available seats");
+    @GetMapping(path = "{eventId}/seats")
+    public ResponseEntity<List<EventSeatResponseDTO>> getSeats(@PathVariable UUID eventId) {
+        return ResponseEntity.ok()
+                .body(this.eventService.getSeats(eventId));
     }
 
-    @GetMapping(path = "{id}/attendance")
-    public ResponseEntity<String> getAttendance(@PathVariable UUID id) {
+    @GetMapping(path = "{eventId}/seats/available")
+    public ResponseEntity<List<EventSeatResponseDTO>> getAvailableSeats(@PathVariable UUID eventId) {
+        return ResponseEntity.ok()
+                .body(this.eventService.getSeatsAvailable(eventId));
+    }
+
+    // TODO after finish seats
+    @GetMapping(path = "{eventId}/attendance")
+    public ResponseEntity<String> getAttendance(@PathVariable UUID eventId) {
         return ResponseEntity.ok().body("list of attendance");
     }
 }

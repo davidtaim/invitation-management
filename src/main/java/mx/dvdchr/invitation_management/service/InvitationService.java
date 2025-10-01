@@ -72,6 +72,7 @@ public class InvitationService {
         return InvitationMapper.toDto(invitation);
     }
 
+    //TODO add eventId as a parameter
     public InvitationResponseDTO update(UUID id, InvitationRequestDTO invitationRequestDTO) {
         var invitation = this.invitationRepository.findById(id)
                 .orElseThrow(() -> new InvitationNotFoundException("Invitation not found"));
