@@ -1,0 +1,3 @@
+version = 1
+url = "http://localhost:4000/api/seats/category/e81cfad8-84bb-4345-bd1c-03bccc9f0199"
+method = "GET"

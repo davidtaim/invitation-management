@@ -3,6 +3,7 @@ package mx.dvdchr.invitation_management.model;
 import java.time.Instant;
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +20,8 @@ public class SeatCategory {
     private UUID id;
 
     @NotNull
-    private String category;
+    @Column(unique = true)
+    private String name;
 
     @NotNull
     private Instant createdAt = Instant.now();
@@ -35,12 +37,12 @@ public class SeatCategory {
         this.id = id;
     }
 
-    public String getCategory() {
-        return category;
+    public String getName() {
+        return name;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Instant getCreatedAt() {

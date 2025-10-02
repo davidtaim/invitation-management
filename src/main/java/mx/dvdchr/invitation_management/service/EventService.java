@@ -68,22 +68,13 @@ public class EventService {
         var organizer = this.userRepository.findById(UUID.fromString(eventRequestDTO.getOrganizerId()))
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
-        EventStatus validStatus = null;
-
-        // TODO find a better way to do this
-        try {
-            validStatus = EventStatus.valueOf(eventRequestDTO.getStatus());
-        } catch (IllegalArgumentException ex) {
-            throw new NotValidEnumStringException("EventStatus not valid");
-        }
-
         event.setOrganizer(organizer);
         event.setTitle(eventRequestDTO.getTitle());
         event.setDescription(eventRequestDTO.getDescription());
         event.setStartDatetime(Instant.parse(eventRequestDTO.getStartDatetime()));
         event.setEndDatetime(Instant.parse(eventRequestDTO.getEndDatetime()));
         event.setLocation(eventRequestDTO.getLocation());
-        event.setStatus(validStatus);
+        event.setStatus(EventStatus.valueOf(eventRequestDTO.getStatus()));
         event.setUpdatedAt(Instant.now());
 
         var updatedEvent = this.eventRepository.save(event);

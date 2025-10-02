@@ -1,0 +1,3 @@
+version = 1
+url = "http://localhost:4000/api/seats/category/3892fa5c-6f1e-42bb-a998-72efa26dbc36"
+method = "DELETE"

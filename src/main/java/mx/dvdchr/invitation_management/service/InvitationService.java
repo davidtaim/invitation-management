@@ -80,17 +80,9 @@ public class InvitationService {
         var event = this.eventRepository.findById(UUID.fromString(invitationRequestDTO.getEventId()))
                 .orElseThrow(() -> new EventNotFoundException("Event not found"));
 
-        InvitationStatus validStatus = null;
-
-        try {
-            validStatus = InvitationStatus.valueOf(invitationRequestDTO.getStatus());
-        } catch (IllegalArgumentException ex) {
-            throw new NotValidEnumStringException("InvitationStatus not valid");
-        }
-
         // TODO refactor validations
         invitation.setEvent(event);
-        invitation.setStatus(validStatus);
+        invitation.setStatus(InvitationStatus.valueOf(invitationRequestDTO.getStatus()));
         invitation.setSentAt(invitationRequestDTO.getSentAt() != null && invitationRequestDTO.getSentAt().length() > 0
                 ? Instant.parse(invitationRequestDTO.getSentAt())
                 : null);

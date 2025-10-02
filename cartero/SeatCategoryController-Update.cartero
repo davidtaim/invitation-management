@@ -1,0 +1,11 @@
+version = 1
+url = "http://localhost:4000/api/seats/category/672cc7f5-6a39-4db6-9dab-6c8195e18f58"
+method = "PUT"
+
+[body]
+type = "raw"
+format = "json"
+body = """
+{
+    "name": "VIP"
+}"""

@@ -18,7 +18,7 @@ public class EventSeatMapper {
         eventSeatResponseDTO.setTableNumber(eventSeat.getTableNumber() == null ? ""
                 : eventSeat.getTableNumber());
         eventSeatResponseDTO.setSeatCategory(eventSeat.getSeatCategory() == null ? ""
-                : eventSeat.getSeatCategory().getCategory());
+                : eventSeat.getSeatCategory().getName());
         eventSeatResponseDTO.setIsAvailable(eventSeat.getIsAvailable());
         eventSeatResponseDTO.setCreatedAt(eventSeat.getCreatedAt().toString());
         eventSeatResponseDTO.setUpdatedAt(eventSeat.getUpdatedAt().toString());

@@ -102,6 +102,15 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
     }
 
+    @ExceptionHandler(SeatCategoryNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleSeatCategoryNotFoundException(SeatCategoryNotFoundException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        errors.put("message", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
+    }
+
     @ExceptionHandler(EmailAlreadyExistsException.class)
     public ResponseEntity<Map<String, String>> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
         Map<String, String> errors = new HashMap<>();
@@ -120,6 +129,18 @@ public class GlobalExceptionHandler {
         log.warn(ex.getMessage());
 
         errors.put("message", "Role with the same name already exists");
+
+        return ResponseEntity.badRequest().body(errors);
+    }
+
+    @ExceptionHandler(SeatCategoryNameAlreadyExistsException.class)
+    public ResponseEntity<Map<String, String>> handleSeatCategoryNameAlreadyExistsException(
+            SeatCategoryNameAlreadyExistsException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        log.warn(ex.getMessage());
+
+        errors.put("message", "Seat category with the same name already exists");
 
         return ResponseEntity.badRequest().body(errors);
     }

@@ -52,11 +52,11 @@
 - [x] `PUT /api/seats/{id}`
 
 #### Seats Category
-- [ ] `GET /api/seats/category`
-- [ ] `POST /api/seats/category`
-- [ ] `DELETE /api/seats/category/{id}`
-- [ ] `GET /api/seats/category/{id}`
-- [ ] `PUT /api/seats/category/{id}`
+- [x] `GET /api/seats/category`
+- [x] `POST /api/seats/category`
+- [x] `DELETE /api/seats/category/{id}`
+- [x] `GET /api/seats/category/{id}`
+- [x] `PUT /api/seats/category/{id}`
 
 #### Users
 - [x] `GET /api/users`
