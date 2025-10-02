@@ -13,7 +13,6 @@ import mx.dvdchr.invitation_management.dto.EventSeatRequestDTO;
 import mx.dvdchr.invitation_management.dto.EventSeatResponseDTO;
 import mx.dvdchr.invitation_management.enums.EventStatus;
 import mx.dvdchr.invitation_management.exception.EventNotFoundException;
-import mx.dvdchr.invitation_management.exception.NotValidEnumStringException;
 import mx.dvdchr.invitation_management.exception.UserNotFoundException;
 import mx.dvdchr.invitation_management.mapper.EventMapper;
 import mx.dvdchr.invitation_management.mapper.EventSeatMapper;

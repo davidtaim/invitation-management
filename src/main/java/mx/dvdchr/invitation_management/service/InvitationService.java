@@ -15,7 +15,6 @@ import mx.dvdchr.invitation_management.enums.InvitationStatus;
 import mx.dvdchr.invitation_management.exception.EventNotFoundException;
 import mx.dvdchr.invitation_management.exception.GuestNotFoundException;
 import mx.dvdchr.invitation_management.exception.InvitationNotFoundException;
-import mx.dvdchr.invitation_management.exception.NotValidEnumStringException;
 import mx.dvdchr.invitation_management.mapper.GuestMapper;
 import mx.dvdchr.invitation_management.mapper.InvitationMapper;
 import mx.dvdchr.invitation_management.repository.EventRepository;
