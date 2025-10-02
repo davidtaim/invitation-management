@@ -8,7 +8,6 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import mx.dvdchr.invitation_management.dto.AttendanceResponseDTO;
-import mx.dvdchr.invitation_management.dto.EventSeatResponseDTO;
 import mx.dvdchr.invitation_management.dto.GuestResponseDTO;
 import mx.dvdchr.invitation_management.dto.InvitationGuestRequestDTO;
 import mx.dvdchr.invitation_management.dto.InvitationGuestResponseDTO;
@@ -19,7 +18,6 @@ import mx.dvdchr.invitation_management.dto.InvitationResponseDTO;
 import mx.dvdchr.invitation_management.enums.AttendanceStatus;
 import mx.dvdchr.invitation_management.enums.InvitationGuestStatus;
 import mx.dvdchr.invitation_management.enums.InvitationStatus;
-import mx.dvdchr.invitation_management.exception.AttendanceNotFoundException;
 import mx.dvdchr.invitation_management.exception.EventNotFoundException;
 import mx.dvdchr.invitation_management.exception.EventSeatNotFoundException;
 import mx.dvdchr.invitation_management.exception.GuestNotFoundException;
