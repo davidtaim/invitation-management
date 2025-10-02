@@ -1,0 +1,11 @@
+version = 1
+url = "http://localhost:4000/api/auth/change/email/888fa8e9-a498-4cac-bfa7-b734d33ea9b3"
+method = "PUT"
+
+[body]
+type = "raw"
+format = "json"
+body = """
+{
+    "email": "admin@admin.com"
+}"""

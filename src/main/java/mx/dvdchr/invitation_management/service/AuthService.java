@@ -9,6 +9,7 @@ import mx.dvdchr.invitation_management.dto.UserRequestDTO;
 import mx.dvdchr.invitation_management.dto.UserResponseDTO;
 import mx.dvdchr.invitation_management.exception.EmailAlreadyExistsException;
 import mx.dvdchr.invitation_management.exception.RoleNotFoundException;
+import mx.dvdchr.invitation_management.exception.UserNotFoundException;
 import mx.dvdchr.invitation_management.mapper.UserMapper;
 import mx.dvdchr.invitation_management.repository.RoleRepository;
 import mx.dvdchr.invitation_management.repository.UserRepository;
@@ -42,6 +43,28 @@ public class AuthService {
         var user = UserMapper.toEntity(userRequestDTO, role);
         var newUser = this.userRepository.save(user);
         return UserMapper.toDto(newUser);
+    }
+
+    //TODO add more logic and security to this
+    public UserResponseDTO changeEmail(UUID id, UserRequestDTO userRequestDTO) {
+        var user = this.userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        user.setEmail(userRequestDTO.getEmail());
+
+        var updatedUser = this.userRepository.save(user);
+
+        return UserMapper.toDto(updatedUser);
+    }
+
+    //TODO add more logic and security to this
+    public UserResponseDTO changePassword(UUID id, UserRequestDTO userRequestDTO) {
+        var user = this.userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        // user.setPassword(userRequestDTO.getPassword());
+
+        // var updatedUser = this.userRepository.save(user);
+
+        return UserMapper.toDto(user);
     }
 
 }

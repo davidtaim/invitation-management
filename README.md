@@ -7,8 +7,8 @@
 - [ ] `POST /api/auth/login`
 - [ ] `POST /api/auth/logout`
 - [x] `POST /api/auth/register`
-- [ ] `PUT /api/auth/change/password`
-- [ ] `PUT /api/auth/change/email`
+- [x] `PUT /api/auth/change/password`
+- [x] `PUT /api/auth/change/email`
 
 #### Events
 - [x] `GET - /api/events`
