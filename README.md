@@ -16,7 +16,7 @@
 - [x] `DELETE - /api/events/{id}`
 - [x] `GET - /api/events/{id}`
 - [x] `PUT - /api/events/{id}`
-- [ ] `GET - /api/events/{id}/attendance`
+- [x] `GET - /api/events/{id}/attendance`
 - [x] `GET - /api/events/{id}/invitations`
 - [x] `POST - /api/events/{id}/invitations`
 - [x] `GET - /api/events/{id}/seats`
