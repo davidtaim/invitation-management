@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.groups.Default;
+import mx.dvdchr.invitation_management.dto.AttendanceResponseDTO;
 import mx.dvdchr.invitation_management.dto.GuestResponseDTO;
 import mx.dvdchr.invitation_management.dto.InvitationGuestRequestDTO;
+import mx.dvdchr.invitation_management.dto.InvitationGuestResponseDTO;
+import mx.dvdchr.invitation_management.dto.InvitationGuestSeatRequestDTO;
+import mx.dvdchr.invitation_management.dto.InvitationGuestStatusRequestDTO;
 import mx.dvdchr.invitation_management.dto.InvitationRequestDTO;
 import mx.dvdchr.invitation_management.dto.InvitationResponseDTO;
 import mx.dvdchr.invitation_management.dto.validator.UpdateInvitationValidationGroup;
@@ -31,6 +35,11 @@ public class InvitationController {
 
     public InvitationController(InvitationService invitationService) {
         this.invitationService = invitationService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<InvitationResponseDTO>> getAll() {
+        return ResponseEntity.ok().body(this.invitationService.getAll());
     }
 
     @GetMapping(path = "{id}")
@@ -60,27 +69,38 @@ public class InvitationController {
                 .body(this.invitationService.getGuestsPerInvitation(id));
     }
 
-    @PutMapping(path = "{id}/guests/{invitationGuestId}/{status}")
-    public ResponseEntity<Void> updateRsvp(@PathVariable UUID id, @PathVariable UUID invitationGuestId,
-            @PathVariable String status) {
-        this.invitationService.updateRsvp(id, invitationGuestId, status);
+    @PutMapping(path = "{id}/guests/{guestId}/status")
+    public ResponseEntity<InvitationGuestResponseDTO> updateRsvp(@PathVariable UUID id,
+            @PathVariable UUID guestId,
+            @Validated @RequestBody InvitationGuestStatusRequestDTO invitationGuestStatusRequestDTO) {
+        return ResponseEntity.ok()
+                .body(this.invitationService.updateRsvp(id, guestId, invitationGuestStatusRequestDTO));
+    }
+
+    @PutMapping(path = "{id}/attendance/{guestId}/seat")
+    public ResponseEntity<InvitationGuestResponseDTO> assignSeat(@PathVariable UUID id,
+            @PathVariable UUID guestId,
+            @Validated() @RequestBody InvitationGuestSeatRequestDTO invitationGuestSeatRequestDTO) {
+        return ResponseEntity.ok()
+                .body(this.invitationService.assignSeat(id, guestId, invitationGuestSeatRequestDTO));
+    }
+
+    @PutMapping(path = "{id}/attendance/{guestId}/checkin")
+    public ResponseEntity<String> checkIn(@PathVariable UUID id, @PathVariable UUID guestId) {
+        this.invitationService.checkinIn(id, guestId);
         return ResponseEntity.noContent().build();
     }
 
-    // TODO primero termina lo de seats
-    @PostMapping(path = "{id}/attendance/{seatId}")
-    public ResponseEntity<String> assignSeat(@PathVariable UUID id, @PathVariable UUID seatId) {
-        return ResponseEntity.ok().body("assigned seat");
+    @PutMapping(path = "{id}/attendance/{guestId}/checkout")
+    public ResponseEntity<String> checkOut(@PathVariable UUID id, @PathVariable UUID guestId) {
+        this.invitationService.checkinOut(id, guestId);
+        return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(path = "{id}/attendance/checkin")
-    public ResponseEntity<String> checkIn(@PathVariable UUID id) {
-        return ResponseEntity.ok().body("guest checked in");
-    }
-
-    @PutMapping(path = "{id}/attendance/checkout")
-    public ResponseEntity<String> checkOut(@PathVariable UUID id) {
-        return ResponseEntity.ok().body("guest checked out");
+    @GetMapping(path = "{id}/guests/attendance")
+    public ResponseEntity<List<AttendanceResponseDTO>> getInvitationAttendance(@PathVariable UUID id) {
+        return ResponseEntity.ok()
+                .body(this.invitationService.getAttendancePerInvitation(id));
     }
 
 }

@@ -25,10 +25,8 @@ public class Attendance {
     @JoinColumn(name = "seat_id", unique = true)
     private EventSeat seat;
 
-    @NotNull
     private Instant checkinTime;
 
-    @NotNull
     private Instant checkoutTime;
 
     @NotNull

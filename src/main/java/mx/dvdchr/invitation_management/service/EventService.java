@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import mx.dvdchr.invitation_management.dto.AttendanceResponseDTO;
 import mx.dvdchr.invitation_management.dto.EventRequestDTO;
 import mx.dvdchr.invitation_management.dto.EventResponseDTO;
 import mx.dvdchr.invitation_management.dto.EventSeatRequestDTO;
@@ -14,11 +15,14 @@ import mx.dvdchr.invitation_management.dto.EventSeatResponseDTO;
 import mx.dvdchr.invitation_management.enums.EventStatus;
 import mx.dvdchr.invitation_management.exception.EventNotFoundException;
 import mx.dvdchr.invitation_management.exception.UserNotFoundException;
+import mx.dvdchr.invitation_management.mapper.AttendanceMapper;
 import mx.dvdchr.invitation_management.mapper.EventMapper;
 import mx.dvdchr.invitation_management.mapper.EventSeatMapper;
 import mx.dvdchr.invitation_management.model.EventSeat;
+import mx.dvdchr.invitation_management.repository.AttendanceRepository;
 import mx.dvdchr.invitation_management.repository.EventRepository;
 import mx.dvdchr.invitation_management.repository.EventSeatRepository;
+import mx.dvdchr.invitation_management.repository.InvitationRepository;
 import mx.dvdchr.invitation_management.repository.UserRepository;
 
 @Service
@@ -27,12 +31,17 @@ public class EventService {
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
     private final EventSeatRepository eventSeatRepository;
+    private final InvitationRepository invitationRepository;
+    private final AttendanceRepository attendanceRepository;
 
     public EventService(EventRepository eventRepository, UserRepository userRepository,
-            EventSeatRepository eventSeatRepository) {
+            EventSeatRepository eventSeatRepository, InvitationRepository invitationRepository,
+            AttendanceRepository attendanceRepository) {
         this.eventRepository = eventRepository;
         this.userRepository = userRepository;
         this.eventSeatRepository = eventSeatRepository;
+        this.invitationRepository = invitationRepository;
+        this.attendanceRepository = attendanceRepository;
     }
 
     public EventResponseDTO create(EventRequestDTO eventRequestDTO) {
@@ -130,6 +139,27 @@ public class EventService {
         var seats = this.eventSeatRepository.findByEventAndIsAvailable(event, true);
 
         return seats.stream().map(EventSeatMapper::toDto).toList();
+    }
+
+    public List<AttendanceResponseDTO> getAttendancesPerEvent(UUID eventId) {
+        var event = this.eventRepository.findById(eventId)
+                .orElseThrow(() -> new EventNotFoundException("Event not found"));
+
+        List<AttendanceResponseDTO> attendances = new ArrayList<>();
+
+        var invitations = this.invitationRepository.findByEvent(event);
+
+        //TODO investigate how this can be improved, thinking on performance
+        invitations.forEach(i -> {
+            i.getGuests().forEach(g -> {
+                var attendance = this.attendanceRepository.findBySeat(g.getSeat());
+                if (attendance != null) {
+                    attendances.add(AttendanceMapper.toDto(attendance, g.getGuest().getId().toString()));
+                }
+            });
+        });
+
+        return attendances;
     }
 
 }

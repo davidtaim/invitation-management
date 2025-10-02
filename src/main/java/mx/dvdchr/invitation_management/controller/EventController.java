@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.groups.Default;
+import mx.dvdchr.invitation_management.dto.AttendanceResponseDTO;
 import mx.dvdchr.invitation_management.dto.EventRequestDTO;
 import mx.dvdchr.invitation_management.dto.EventResponseDTO;
 import mx.dvdchr.invitation_management.dto.EventSeatRequestDTO;
@@ -95,7 +96,8 @@ public class EventController {
     }
 
     @PostMapping(path = "{eventId}/seats/{amount}")
-    public ResponseEntity<List<EventSeatResponseDTO>> createSeats(@PathVariable UUID eventId, @PathVariable int amount) {
+    public ResponseEntity<List<EventSeatResponseDTO>> createSeats(@PathVariable UUID eventId,
+            @PathVariable int amount) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(this.eventService.addSeats(eventId, amount));
     }
@@ -112,9 +114,9 @@ public class EventController {
                 .body(this.eventService.getSeatsAvailable(eventId));
     }
 
-    // TODO after finish seats
+    //TODO add a dto to add eventId if needed
     @GetMapping(path = "{eventId}/attendance")
-    public ResponseEntity<String> getAttendance(@PathVariable UUID eventId) {
-        return ResponseEntity.ok().body("list of attendance");
+    public ResponseEntity<List<AttendanceResponseDTO>> getAttendance(@PathVariable UUID eventId) {
+        return ResponseEntity.ok().body(this.eventService.getAttendancesPerEvent(eventId));
     }
 }

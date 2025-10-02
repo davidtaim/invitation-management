@@ -21,6 +21,7 @@
 - [x] `POST - /api/events/{id}/invitations`
 - [x] `GET - /api/events/{id}/seats`
 - [x] `POST - /api/events/{id}/seats`
+- [x] `POST - /api/events/{id}/seats/{amount}`
 - [x] `GET - /api/events/{id}/seats/available`
 
 #### Guests
@@ -33,9 +34,11 @@
 #### Invitations
 - [x] `GET - /api/invitations/{id}`
 - [x] `PUT - /api/invitations/{id}`
-- [ ] `POST - /api/invitations/{id}/attendance/{seatId}`
-- [ ] `PUT - /api/invitations/{id}/attendance/checkin`
-- [ ] `PUT - /api/invitations/{id}/attendance/checkout`
+- [x] `POST - /api/invitations/{id}/guests/{invitationGuestId}/seat`
+- [x] `PUT - /api/invitations/{id}/guests/{invitationGuestId}/checkin`
+- [x] `PUT - /api/invitations/{id}/guests/{invitationGuestId}/checkout`
+- [x] `GET - /api/invitations/{id}/guests/attendance`
+- [x] `PUT - /api/invitations/{id}/guests/{invitationGuestId}/status/{status}`
 - [x] `GET - /api/invitations/{id}/guests`
 - [x] `POST - /api/invitations/{id}/guests`
 

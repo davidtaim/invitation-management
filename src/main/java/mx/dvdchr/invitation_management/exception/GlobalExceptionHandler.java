@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+//TODO refactor this class in multiple @RestControllerAdvice
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -104,6 +105,15 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(SeatCategoryNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleSeatCategoryNotFoundException(SeatCategoryNotFoundException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        errors.put("message", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
+    }
+
+    @ExceptionHandler(AttendanceNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleAttendanceNotFoundException(AttendanceNotFoundException ex) {
         Map<String, String> errors = new HashMap<>();
 
         errors.put("message", ex.getMessage());
