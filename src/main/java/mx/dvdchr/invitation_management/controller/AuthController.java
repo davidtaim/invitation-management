@@ -3,6 +3,8 @@ package mx.dvdchr.invitation_management.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.groups.Default;
+import mx.dvdchr.invitation_management.dto.AuthLoginRequestDTO;
+import mx.dvdchr.invitation_management.dto.AuthLoginResponseDTO;
 import mx.dvdchr.invitation_management.dto.UserRequestDTO;
 import mx.dvdchr.invitation_management.dto.UserResponseDTO;
 import mx.dvdchr.invitation_management.dto.validator.UpdateUserEmailValidationGroup;
@@ -51,8 +53,9 @@ public class AuthController {
     }
 
     @PostMapping("login")
-    public ResponseEntity<String> login(@RequestBody String credentials) {
-        return ResponseEntity.ok().body("jwt");
+    public ResponseEntity<AuthLoginResponseDTO> login(
+            @Validated() @RequestBody AuthLoginRequestDTO authLoginRequestDTO) {
+        return ResponseEntity.ok().body(this.authService.login(authLoginRequestDTO));
     }
 
     @PostMapping("logout")

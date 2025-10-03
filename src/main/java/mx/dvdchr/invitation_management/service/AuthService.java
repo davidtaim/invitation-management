@@ -2,9 +2,12 @@ package mx.dvdchr.invitation_management.service;
 
 import java.util.UUID;
 
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import mx.dvdchr.invitation_management.dto.AuthLoginRequestDTO;
+import mx.dvdchr.invitation_management.dto.AuthLoginResponseDTO;
 import mx.dvdchr.invitation_management.dto.UserRequestDTO;
 import mx.dvdchr.invitation_management.dto.UserResponseDTO;
 import mx.dvdchr.invitation_management.exception.EmailAlreadyExistsException;
@@ -13,18 +16,25 @@ import mx.dvdchr.invitation_management.exception.UserNotFoundException;
 import mx.dvdchr.invitation_management.mapper.UserMapper;
 import mx.dvdchr.invitation_management.repository.RoleRepository;
 import mx.dvdchr.invitation_management.repository.UserRepository;
+import mx.dvdchr.invitation_management.util.JwtUtil;
 
 @Service
 public class AuthService {
 
-    public final UserRepository userRepository;
-    public final RoleRepository roleRepository;
-    public final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
-    public AuthService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+    public AuthService(
+            UserRepository userRepository,
+            RoleRepository roleRepository,
+            PasswordEncoder passwordEncoder,
+            JwtUtil jwtUtil) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
     }
 
     public UserResponseDTO register(UserRequestDTO userRequestDTO) {
@@ -45,7 +55,19 @@ public class AuthService {
         return UserMapper.toDto(newUser);
     }
 
-    //TODO add more logic and security to this
+    public AuthLoginResponseDTO login(AuthLoginRequestDTO authLoginRequestDTO) {
+        var user = this.userRepository.findByEmail(authLoginRequestDTO.getEmail());
+
+        if (!this.passwordEncoder.matches(authLoginRequestDTO.getPassword(), user.getPassword())) {
+            throw new BadCredentialsException("Bad credentials login");
+        }
+
+        String token = this.jwtUtil.generateToken(authLoginRequestDTO.getEmail(), user.getRole().getName());
+
+        return new AuthLoginResponseDTO(token);
+    }
+
+    // TODO add more logic and security to this
     public UserResponseDTO changeEmail(UUID id, UserRequestDTO userRequestDTO) {
         var user = this.userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
 
@@ -56,7 +78,7 @@ public class AuthService {
         return UserMapper.toDto(updatedUser);
     }
 
-    //TODO add more logic and security to this
+    // TODO add more logic and security to this
     public UserResponseDTO changePassword(UUID id, UserRequestDTO userRequestDTO) {
         var user = this.userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
 
