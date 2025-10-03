@@ -7,6 +7,6 @@ type = "raw"
 format = "json"
 body = """
 {
-    "email": "david@gmail.com",
+    "email": "admin@gmail.com",
     "password": "password"
 }"""
