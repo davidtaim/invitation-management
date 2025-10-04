@@ -1,3 +1,7 @@
 version = 1
 url = "http://localhost:4000/api/events"
 method = "GET"
+
+[authorization]
+type = "bearer"
+token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZEBnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9HVUVTVCIsImlhdCI6MTc1OTU0MTAyNiwiZXhwIjoxNzU5NTc3MDI2fQ.jvObCjJaeqN4yeVqHwEdEJYDrLztgo_mMKtf0RfZAWA5NFEf1nKVnc15HLoj9d56o4TuZ-gSYCaSCU7BRBv62g"

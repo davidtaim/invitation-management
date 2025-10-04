@@ -12,5 +12,5 @@ body = """
     "lastName": "Rodriguez",
     "email": "david@gmail.com",
     "password": "password",
-    "roleId": "2b0306c1-9a27-4385-94b1-d00a00c91bda"
+    "roleId": "67c5fb73-7580-4e04-b8e8-ebd2ab97e692"
 }"""

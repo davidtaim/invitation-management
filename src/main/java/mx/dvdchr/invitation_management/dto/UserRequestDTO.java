@@ -28,7 +28,7 @@ public class UserRequestDTO {
     @Size(min = 8, message = "Password must have at least 8 characteres")
     private String password;
 
-    @NotBlank(message = "Role is required", groups = { UpdateUserValidationGroup.class })
+    @NotBlank(message = "Role is required", groups = { Default.class, UpdateUserValidationGroup.class })
     private String roleId;
 
     @NotNull(message = "Active is required", groups = UpdateUserValidationGroup.class)

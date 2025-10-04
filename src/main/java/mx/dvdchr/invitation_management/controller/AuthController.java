@@ -40,6 +40,12 @@ public class AuthController {
                 .body(this.authService.register(userRequestDTO));
     }
 
+    @PostMapping("login")
+    public ResponseEntity<AuthLoginResponseDTO> login(
+            @Validated() @RequestBody AuthLoginRequestDTO authLoginRequestDTO) {
+        return ResponseEntity.ok().body(this.authService.login(authLoginRequestDTO));
+    }
+
     @PutMapping(path = "change/email/{id}")
     public ResponseEntity<UserResponseDTO> changeEmail(@PathVariable UUID id,
             @Validated({ UpdateUserEmailValidationGroup.class }) @RequestBody UserRequestDTO userRequestDTO) {
@@ -50,17 +56,6 @@ public class AuthController {
     public ResponseEntity<UserResponseDTO> changePassword(@PathVariable UUID id,
             @Validated({ UpdateUserPasswordValidationGroup.class }) @RequestBody UserRequestDTO userRequestDTO) {
         return ResponseEntity.ok().body(this.authService.changePassword(id, userRequestDTO));
-    }
-
-    @PostMapping("login")
-    public ResponseEntity<AuthLoginResponseDTO> login(
-            @Validated() @RequestBody AuthLoginRequestDTO authLoginRequestDTO) {
-        return ResponseEntity.ok().body(this.authService.login(authLoginRequestDTO));
-    }
-
-    @PostMapping("logout")
-    public ResponseEntity<Void> logout() {
-        return ResponseEntity.noContent().build();
     }
 
 }

@@ -10,8 +10,7 @@ import javax.crypto.SecretKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.security.SignatureException;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
@@ -39,16 +38,12 @@ public class JwtUtil {
         return token;
     }
 
-    public void validateToken(String token) {
-        try {
-            Jwts.parser().verifyWith((SecretKey) secretKey)
-                    .build()
-                    .parseSignedClaims(token);
-        } catch (SignatureException e) {
-            throw new JwtException("Invalid JWT signature");
-        } catch (JwtException e) {
-            throw new JwtException("Invalid JWT");
-        }
+    public Claims getClaims(String token) {
+        return Jwts.parser()
+                .verifyWith((SecretKey) secretKey)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
     }
 
 }
