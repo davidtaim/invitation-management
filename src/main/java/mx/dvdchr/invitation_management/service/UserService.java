@@ -8,21 +8,17 @@ import org.springframework.stereotype.Service;
 
 import mx.dvdchr.invitation_management.dto.UserRequestDTO;
 import mx.dvdchr.invitation_management.dto.UserResponseDTO;
-import mx.dvdchr.invitation_management.exception.RoleNotFoundException;
 import mx.dvdchr.invitation_management.exception.UserNotFoundException;
 import mx.dvdchr.invitation_management.mapper.UserMapper;
-import mx.dvdchr.invitation_management.repository.RoleRepository;
 import mx.dvdchr.invitation_management.repository.UserRepository;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
 
-    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
     }
 
     public List<UserResponseDTO> getAll() {
@@ -42,13 +38,10 @@ public class UserService {
         var user = this.userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
-        var role = this.roleRepository.findById(UUID.fromString(userRequestDTO.getRoleId()))
-                .orElseThrow(() -> new RoleNotFoundException("Role not found"));
-
         user.setName(userRequestDTO.getName());
         user.setMiddleName(userRequestDTO.getMiddleName());
         user.setLastName(userRequestDTO.getLastName());
-        user.setRole(role);
+        user.setRole(userRequestDTO.getRole());
         user.setUpdatedAt(Instant.now());
 
         return UserMapper.toDto(user);

@@ -42,13 +42,6 @@
 - [x] `GET - /api/invitations/{id}/guests`
 - [x] `POST - /api/invitations/{id}/guests`
 
-#### Roles
-- [x] `GET /api/roles`
-- [x] `POST /api/roles`
-- [x] `DELETE /api/roles/{id}`
-- [x] `GET /api/roles/{id}`
-- [x] `PUT /api/roles/{id}`
-
 #### Seats
 - [x] `DELETE /api/seats/{id}`
 - [x] `GET /api/seats/{id}`

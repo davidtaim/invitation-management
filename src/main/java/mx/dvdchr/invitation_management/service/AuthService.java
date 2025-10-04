@@ -11,10 +11,8 @@ import mx.dvdchr.invitation_management.dto.AuthLoginResponseDTO;
 import mx.dvdchr.invitation_management.dto.UserRequestDTO;
 import mx.dvdchr.invitation_management.dto.UserResponseDTO;
 import mx.dvdchr.invitation_management.exception.EmailAlreadyExistsException;
-import mx.dvdchr.invitation_management.exception.RoleNotFoundException;
 import mx.dvdchr.invitation_management.exception.UserNotFoundException;
 import mx.dvdchr.invitation_management.mapper.UserMapper;
-import mx.dvdchr.invitation_management.repository.RoleRepository;
 import mx.dvdchr.invitation_management.repository.UserRepository;
 import mx.dvdchr.invitation_management.util.JwtUtil;
 
@@ -22,17 +20,14 @@ import mx.dvdchr.invitation_management.util.JwtUtil;
 public class AuthService {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 
     public AuthService(
             UserRepository userRepository,
-            RoleRepository roleRepository,
             PasswordEncoder passwordEncoder,
             JwtUtil jwtUtil) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
     }
@@ -44,13 +39,10 @@ public class AuthService {
                     + userRequestDTO.getEmail());
         }
 
-        var role = this.roleRepository.findById(UUID.fromString(userRequestDTO.getRoleId()))
-                .orElseThrow(() -> new RoleNotFoundException("Role not found"));
-
         var newPass = this.passwordEncoder.encode(userRequestDTO.getPassword());
         userRequestDTO.setPassword(newPass);
 
-        var user = UserMapper.toEntity(userRequestDTO, role);
+        var user = UserMapper.toEntity(userRequestDTO);
         var newUser = this.userRepository.save(user);
         return UserMapper.toDto(newUser);
     }
@@ -62,12 +54,11 @@ public class AuthService {
             throw new BadCredentialsException("Bad credentials login");
         }
 
-        String token = this.jwtUtil.generateToken(authLoginRequestDTO.getEmail(), user.getRole().getName());
+        String token = this.jwtUtil.generateToken(authLoginRequestDTO.getEmail(), user.getRole());
 
         return new AuthLoginResponseDTO(token);
     }
 
-    // TODO add more logic and security to this
     public UserResponseDTO changeEmail(UUID id, UserRequestDTO userRequestDTO) {
         var user = this.userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
 
@@ -78,15 +69,14 @@ public class AuthService {
         return UserMapper.toDto(updatedUser);
     }
 
-    // TODO add more logic and security to this
     public UserResponseDTO changePassword(UUID id, UserRequestDTO userRequestDTO) {
         var user = this.userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
 
-        // user.setPassword(userRequestDTO.getPassword());
+        user.setPassword(userRequestDTO.getPassword());
 
-        // var updatedUser = this.userRepository.save(user);
+        var updatedUser = this.userRepository.save(user);
 
-        return UserMapper.toDto(user);
+        return UserMapper.toDto(updatedUser);
     }
 
 }

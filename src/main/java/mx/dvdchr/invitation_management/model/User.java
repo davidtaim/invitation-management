@@ -39,9 +39,7 @@ public class User {
     private String password;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+    private String role;
 
     @NotNull
     private Instant createdAt = Instant.now();
@@ -100,11 +98,11 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

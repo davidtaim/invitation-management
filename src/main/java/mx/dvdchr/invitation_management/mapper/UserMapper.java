@@ -2,7 +2,6 @@ package mx.dvdchr.invitation_management.mapper;
 
 import mx.dvdchr.invitation_management.dto.UserRequestDTO;
 import mx.dvdchr.invitation_management.dto.UserResponseDTO;
-import mx.dvdchr.invitation_management.model.Role;
 import mx.dvdchr.invitation_management.model.User;
 
 public class UserMapper {
@@ -15,7 +14,7 @@ public class UserMapper {
         userResponseDTO.setMiddleName(user.getMiddleName());
         userResponseDTO.setLastName(user.getLastName());
         userResponseDTO.setEmail(user.getEmail());
-        userResponseDTO.setRole(user.getRole().getName());
+        userResponseDTO.setRole(user.getRole());
         userResponseDTO.setIsActive(user.getIsActive());
         userResponseDTO.setCreatedAt(user.getCreatedAt().toString());
         userResponseDTO.setUpdatedAt(user.getUpdatedAt().toString());
@@ -23,7 +22,7 @@ public class UserMapper {
         return userResponseDTO;
     }
 
-    public static User toEntity(UserRequestDTO userRequestDTO, Role role) {
+    public static User toEntity(UserRequestDTO userRequestDTO) {
         var user = new User();
 
         user.setName(userRequestDTO.getName());
@@ -31,7 +30,7 @@ public class UserMapper {
         user.setMiddleName(userRequestDTO.getMiddleName());
         user.setLastName(userRequestDTO.getLastName());
         user.setPassword(userRequestDTO.getPassword());
-        user.setRole(role);
+        user.setRole(userRequestDTO.getRole());
 
         return user;
     }

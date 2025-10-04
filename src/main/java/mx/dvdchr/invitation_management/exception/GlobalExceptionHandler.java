@@ -49,15 +49,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errors);
     }
 
-    @ExceptionHandler(RoleNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleRoleNotFoundException(RoleNotFoundException ex) {
-        Map<String, String> errors = new HashMap<>();
-
-        errors.put("message", ex.getMessage());
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
-    }
-
     @ExceptionHandler(GuestNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleGuestNotFoundException(GuestNotFoundException ex) {
         Map<String, String> errors = new HashMap<>();
@@ -128,17 +119,6 @@ public class GlobalExceptionHandler {
         log.warn(ex.getMessage());
 
         errors.put("message", "Email address already exists");
-
-        return ResponseEntity.badRequest().body(errors);
-    }
-
-    @ExceptionHandler(RoleNameAlreadyExistsException.class)
-    public ResponseEntity<Map<String, String>> handleRoleNameAlreadyExistsException(RoleNameAlreadyExistsException ex) {
-        Map<String, String> errors = new HashMap<>();
-
-        log.warn(ex.getMessage());
-
-        errors.put("message", "Role with the same name already exists");
 
         return ResponseEntity.badRequest().body(errors);
     }

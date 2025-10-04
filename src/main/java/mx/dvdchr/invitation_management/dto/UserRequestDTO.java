@@ -29,7 +29,7 @@ public class UserRequestDTO {
     private String password;
 
     @NotBlank(message = "Role is required", groups = { Default.class, UpdateUserValidationGroup.class })
-    private String roleId;
+    private String role;
 
     @NotNull(message = "Active is required", groups = UpdateUserValidationGroup.class)
     private Boolean isActive;
@@ -74,12 +74,12 @@ public class UserRequestDTO {
         this.password = password;
     }
 
-    public String getRoleId() {
-        return roleId;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Boolean getIsActive() {

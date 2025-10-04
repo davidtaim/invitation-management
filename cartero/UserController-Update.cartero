@@ -10,6 +10,6 @@ body = """
     "name": "David",
     "middleName": "Chavez",
     "lastName": "Rodriguez",
-    "roleId": "2b0306c1-9a27-4385-94b1-d00a00c91bda",
+    "role": "GUEST",
     "isActive": true
 }"""
