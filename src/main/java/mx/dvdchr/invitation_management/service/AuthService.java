@@ -48,7 +48,8 @@ public class AuthService {
     }
 
     public AuthLoginResponseDTO login(AuthLoginRequestDTO authLoginRequestDTO) {
-        var user = this.userRepository.findByEmail(authLoginRequestDTO.getEmail());
+        var user = this.userRepository.findByEmail(authLoginRequestDTO.getEmail())
+                .orElseThrow(() -> new UserNotFoundException("Email no registered"));
 
         if (!this.passwordEncoder.matches(authLoginRequestDTO.getPassword(), user.getPassword())) {
             throw new BadCredentialsException("Bad credentials login");

@@ -6,4 +6,8 @@ method = "GET"
 
 [variables]
 
+[authorization]
+type = "bearer"
+token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYXZpZEBnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9HVUVTVCIsImlhdCI6MTc1OTU2MDg3MCwiZXhwIjoxNzU5NTk2ODcwfQ.It_97hy4-bcSKZfJUNMM2x3ZKW1pxqkmA7vpFvVcAVr2kXH5UDYpFVc-4-loywy27vOwDC_c46aGDUji3kyYSQ"
+
 [inactive-params]

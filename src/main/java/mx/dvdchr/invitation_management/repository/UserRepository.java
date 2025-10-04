@@ -1,5 +1,6 @@
 package mx.dvdchr.invitation_management.repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +11,5 @@ import mx.dvdchr.invitation_management.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
     boolean existsByEmail(String email);
-    User findByEmail(String email);
+    Optional<User> findByEmail(String email);
 }
