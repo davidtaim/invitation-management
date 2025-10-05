@@ -29,9 +29,10 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.disable())
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(
-                        auth -> auth.requestMatchers("/api/auth/login", "/api/auth/logout", "/api/auth/register")
+                        auth -> auth.requestMatchers("/api/auth/login", "/api/auth/logout", "/api/auth/register", "/swagger-ui/**", "/v3/api-docs/**")
                                 .permitAll()
                                 .requestMatchers("/api/events/**")
                                 .hasAnyRole(UserRoles.ADMIN.name(), UserRoles.ORGANIZER.name())
