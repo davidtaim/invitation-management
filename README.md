@@ -4,8 +4,8 @@
 
 ### Endpoints
 #### Auth
-- [ ] `POST /api/auth/login`
-- [ ] `POST /api/auth/logout`
+- [x] `POST /api/auth/login`
+- [ ] `POST /api/auth/logout` (pending to implement)
 - [x] `POST /api/auth/register`
 - [x] `PUT /api/auth/change/password`
 - [x] `PUT /api/auth/change/email`
